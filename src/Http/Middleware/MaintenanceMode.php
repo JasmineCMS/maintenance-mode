@@ -24,7 +24,7 @@ class MaintenanceMode
         if (\Auth::guard(config('jasmine.auth.guard'))->check()) return $next($request);
 
         // If has valid token
-        $token = $request->cookie('jasmine_mm', $request->get('mm-token'));
+        $token = $request->get('mm-token', $request->cookie('jasmine_mm'));
         if ($token && \Arr::first($conf['bypass_tokens'] ?? [],
                 fn($bt) => str_contains($bt['url'], '?mm-token=' . $token))) {
             \Cookie::queue('jasmine_mm', $token, 60 * 24 * 30 * 12);

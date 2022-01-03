@@ -3,6 +3,7 @@
 namespace Jasmine\MaintenanceMode\Http\Middleware;
 
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Jasmine\MaintenanceMode\Pages\MaintenanceMode as MaintenanceModePage;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -16,7 +17,12 @@ class MaintenanceMode
      */
     public function handle($request, \Closure $next)
     {
-        $conf = MaintenanceModePage::jLoad()?->content ?? [];
+        try {
+            $conf = MaintenanceModePage::jLoad()?->content ?? [];
+        } catch (ModelNotFoundException $e) {
+            return $next($request);
+        }
+
 
         // Check if maintenance mode enabled
         if ($conf['status'] != '1') return $next($request);

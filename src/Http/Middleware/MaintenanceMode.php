@@ -25,7 +25,7 @@ class MaintenanceMode
 
 
         // Check if maintenance mode enabled
-        if ($conf['status'] != '1') return $next($request);
+        if (!isset($conf['status']) || $conf['status'] != '1') return $next($request);
         // If authenticated continue
         if (\Auth::guard(config('jasmine.auth.guard'))->check()) return $next($request);
 

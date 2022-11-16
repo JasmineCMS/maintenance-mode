@@ -1,25 +1,25 @@
 {
-    "name": "jasminecms/maintenance-mode",
-    "description": "Maintenance mode package for Jasmine",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Mordi Sacks"
-        }
-    ],
-    "require": {
-        "jasminecms/jasmine": "^1.1"
-    },
-    "autoload": {
-        "psr-4": {
-            "Jasmine\\MaintenanceMode\\": "src/"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Jasmine\\MaintenanceMode\\JasmineMaintenanceModeServiceProvider"
-            ]
-        }
+  "name": "jasminecms/maintenance-mode",
+  "description": "Maintenance mode package for Jasmine",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mordi Sacks"
     }
+  ],
+  "require": {
+    "jasminecms/jasmine": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Jasmine\\MaintenanceMode\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Jasmine\\MaintenanceMode\\JasmineMaintenanceModeServiceProvider"
+      ]
+    }
+  }
 }

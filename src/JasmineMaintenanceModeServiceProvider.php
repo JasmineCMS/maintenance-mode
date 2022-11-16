@@ -11,17 +11,16 @@ class JasmineMaintenanceModeServiceProvider extends ServiceProvider
     public function register()
     {
         \Jasmine::registerPage(MaintenanceModePage::class, false);
-
+        
         app('jasmine')->registerSideBarSubMenuItem('tools', 'maintenance-mode', function () {
             return [
-                'title'    => __('Maintenance Mode'),
+                'title'    => 'Maintenance Mode',
                 'href'     => route('jasmine.page.edit', 'maintenance-mode'),
-                'is-route' => fn() => \Route::is('jasmine.page.*')
-                    && \request()->route('jasminePage')->name === 'maintenance-mode',
+                'is-route' => ['r' => 'jasmine.page.edit', 'p' => ['jasminePage' => 'maintenance-mode']],
             ];
         });
     }
-
+    
     public function boot()
     {
         app('router')->aliasMiddleware('jasmineMaintenanceMode', MaintenanceMode::class);
